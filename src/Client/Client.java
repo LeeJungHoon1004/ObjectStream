@@ -50,7 +50,7 @@ public class Client {
 			String fileName = null;
 			int fileSize = 0;
 			byte[] fileContents = null;
-			File home = new File("E:/프로그래밍/Java언어/자바기반웹프로그래머양성_7월/Client");
+			File home = new File("D:/6월자바_이정훈_2차/자바기반웹개발자양성_7월/Client");
 			File[] files = home.listFiles();
 			for(File tmp : files) {
 				System.out.println(tmp.getAbsolutePath() + " : "+ tmp.length());
@@ -63,25 +63,30 @@ public class Client {
 			//title 값을 클라이언트 에서 가져와서 입력한다	title = Component.gettext()..
 			//contents 값을 클라이언트 에서 가져와서 입력한다. contents = Component.gettext()..
 			
-			fileName = "Kalimba.mp3";
+			fileName = "a.txt";
 			File targetFile = new File(home.getPath() + "/" + fileName);
 			//	System.out.println(home.getPath()+"/"+fileName);
 			
-				title = "Kalimba.mp3";
-				contents = "Kalimba.mp3내용";
+				title = "a.txt";
+				contents = "a.txt";
 				fileName = targetFile.getName();
 				fileSize = (int)targetFile.length();
 				fileContents = new byte[fileSize];
-			
+				
+				//파일컨텐츠에 실제 파일을 담아준다.
+				fis = new FileInputStream(targetFile);
+				fis.read(fileContents);
+				fis.close();
+				
 				//	System.out.println("1번째 파일 :" + fileName + "의 파일 사이즈 :" +fileSize + " : " + "의 파일 내용물 :" + fileContents );
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			//파일a제목 , 파일a내용 , 타겟팅한 파일의 이름 , 파일크기 , 파일을 바이트배열로 담아서 내용묶음
 			FileList fl1 = new FileList(title , contents , fileName , fileSize , fileContents);
 			oos.writeObject(fl1);
-
+			
 			//===========================================================
 			
-			fileName = "JEJU_LastDay_yongdooamm.png";
+			fileName = "mouse-clip-art-12154415421767612404lemmling_Simple_cartoon_mouse.svg.med.png";
 			targetFile = new File(home.getPath() + "/" + fileName);
 				
 				title = "제주2";
@@ -89,6 +94,11 @@ public class Client {
 				fileName = targetFile.getName();
 				fileSize = (int)targetFile.length();
 				fileContents = new byte[fileSize];
+				
+				//파일컨텐츠에 실제 파일을 담아준다.
+				fis = new FileInputStream(targetFile);
+				fis.read(fileContents);
+				fis.close();
 			
 			FileList fl2 =  new FileList(title , contents , fileName , fileSize , fileContents);
 		
@@ -96,17 +106,21 @@ public class Client {
 			
 			//=============================================================
 			
-			fileName = "a.txt";
-			targetFile = new File(home.getPath() + "/" + fileName);
-				
-				title = "a의제목";
-				contents ="a의내용";
-				fileName = targetFile.getName();
-				fileSize = (int)targetFile.length();
-				fileContents = new byte[fileSize];
+//			fileName = "a.txt";
+//			targetFile = new File(home.getPath() + "/" + fileName);
+//				
+//				title = "a의제목";
+//				contents ="a의내용";
+//				fileName = targetFile.getName();
+//				fileSize = (int)targetFile.length();
+//				fileContents = new byte[fileSize];
+//			
+//			FileList fl3 =  new FileList(title , contents , fileName , fileSize , fileContents);
+//			oos.writeObject(fl3);
 			
-			FileList fl3 =  new FileList(title , contents , fileName , fileSize , fileContents);
-			oos.writeObject(fl3);
+			
+			
+			
 			System.out.println("직렬화후 오브젝트 전송 성공");
 			
 			oos.close();

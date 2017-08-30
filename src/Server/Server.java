@@ -58,10 +58,9 @@ class ConnectionThread extends Thread {
 					
 					//2.클라이언트에서 데이터를 받습니다 (2.ClientRam to ServerRam)
 					ois = new ObjectInputStream(socket.getInputStream());
-					
 					FileList fl1 = (FileList) ois.readObject();
 					FileList fl2 = (FileList) ois.readObject();
-					FileList fl3 = (FileList) ois.readObject();
+//					FileList fl3 = (FileList) ois.readObject();
 					
 					
 					
@@ -73,11 +72,11 @@ class ConnectionThread extends Thread {
 					System.out.println(fl1.getFileContents());//파일의 내용물(byte [])
 					
 					
-//					System.out.println(fl2.getTitle());
-//					System.out.println(fl2.getContents());
-//					System.out.println(fl2.getFileName());
-//					System.out.println(fl2.getFileSize());
-//					System.out.println(fl2.getFileContents());
+					System.out.println(fl2.getTitle());
+					System.out.println(fl2.getContents());
+					System.out.println(fl2.getFileName());
+					System.out.println(fl2.getFileSize());
+					System.out.println(fl2.getFileContents());
 					
 					
 //					System.out.println(fl3.getTitle());
@@ -88,19 +87,19 @@ class ConnectionThread extends Thread {
 					
 					//3.클라이언트에서 받은 데이터를 경로에 저장합니다 (3.Ram to Hdd)
 					fileContents = fl1.getFileContents();
-					File f = new File("E:/프로그래밍/Java언어/자바기반웹프로그래머양성_7월/Server/" + fl1.getFileName());
+					File f = new File("D:/6월자바_이정훈_2차/자바기반웹개발자양성_7월/Server/" + fl1.getFileName());
 					fos = new FileOutputStream(f);
 					bos = new BufferedOutputStream(fos);
 					dos = new DataOutputStream(bos);
 					dos.write(fileContents);
 					dos.flush();
 					
-//					fileContents = fl2.getFileContents();
-//					File f2 = new File("E:/프로그래밍/Java언어/자바기반웹프로그래머양성_7월/Server/" + fl2.getFileName());
-//					fos = new FileOutputStream(f2);
-//					dos = new DataOutputStream(fos);
-//					dos.write(fileContents);
-//					dos.flush();
+					fileContents = fl2.getFileContents();
+					File f2 = new File("D:/6월자바_이정훈_2차/자바기반웹개발자양성_7월/Server/" + fl2.getFileName());
+					fos = new FileOutputStream(f2);
+					dos = new DataOutputStream(fos);
+					dos.write(fileContents);
+					dos.flush();
 					
 //					fileContents = fl3.getFileContents();
 //					File f3 = new File("E:/프로그래밍/Java언어/자바기반웹프로그래머양성_7월/Server/" + fl3.getFileName());
