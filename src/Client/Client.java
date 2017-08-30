@@ -118,11 +118,7 @@ public class Client {
 //			FileList fl3 =  new FileList(title , contents , fileName , fileSize , fileContents);
 //			oos.writeObject(fl3);
 			
-			
-			
-			
 			System.out.println("직렬화후 오브젝트 전송 성공");
-			
 			oos.close();
 			
 		} catch (Exception e) {
